@@ -39,12 +39,9 @@ Operation: string? operationStr = Console.ReadLine();
             case 7:
                 groupController.GetAllByTeacher();
                 break;
-            //case 6:
-            //    Console.WriteLine("Enter Id:");
-            //    string idStr = Console.ReadLine();
-            //    int id = int.Parse(idStr);  
-            //    studentController.GetById(id);
-            //    break;
+            case 9:
+                groupController.Update();
+                break;
             default:
                 ConsoleColor.Red.WriteConsole("Operation is wrong, please choose again");
                 goto Operation;
@@ -59,5 +56,5 @@ Operation: string? operationStr = Console.ReadLine();
 
 static void GetMenues()
 {
-    ConsoleColor.Cyan.WriteConsole("Choose one operation : \n 1 - Create Group \n 2 - Update Group \n 3 - Delete Group \n 4 - Get All Groups \n 5 - Get Group By Name \n 6 - Get Student By Id");
+    ConsoleColor.Cyan.WriteConsole("Choose one operation : \n 1 - Create Group \n 2 - Update Group \n 3 - Delete Group \n 4 - Get All Groups \n 5 - Get Group By Name \n 6 - Get Student By Id \n 7 - Get All Groups By Teacher \n 8 - Delete Student \n 9 - Update Student \n 10 - Get Student By Name \n 11 - Get Student By Age");
 }

@@ -20,3 +20,4 @@ C:\Users\user\Desktop\Course.Application1\Course.Application\Course.Application\
 C:\Users\user\Desktop\Course.Application1\Course.Application\Course.Application\obj\Debug\net6.0\Course.Application.pdb
 C:\Users\user\Desktop\Course.Application1\Course.Application\Course.Application\obj\Debug\net6.0\Course.Application.genruntimeconfig.cache
 C:\Users\user\Desktop\Course.Application1\Course.Application\Course.Application\obj\Debug\net6.0\ref\Course.Application.dll
+C:\Users\user\Desktop\Course.Application1\Course.Application\Course.Application\obj\Debug\net6.0\Course.Application.sourcelink.json

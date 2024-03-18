@@ -168,7 +168,14 @@ namespace Course.Application.Controllers
             if (!string.IsNullOrWhiteSpace(groupName))
             {
                 Group group = _groupService.GetByName(groupName);
-                Console.WriteLine($"Id: {group.Id}, Group name : {group.Name}, Group Teacher : {group.Teacher}, Group Room : {group.Room}");
+                if (group != null)
+                {
+                    Console.WriteLine($"Id: {group.Id}, Group name : {group.Name}, Group Teacher : {group.Teacher}, Group Room : {group.Room}");
+                }
+                else
+                {
+                    Console.WriteLine("Group Not found");
+                }
             }
             else
             {
