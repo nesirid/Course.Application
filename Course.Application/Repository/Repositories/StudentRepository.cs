@@ -25,5 +25,10 @@ namespace Repository.Repositories
         {
             return AppDbContext<Student>.datas.FirstOrDefault(m => m.Name== studentName);
         }
+
+        public List<Student> GetBySurnameOrName(string input)
+        {
+            return AppDbContext<Student>.datas.Where(s=>s.Name==input || s.Surname==input).ToList();   
+        }
     }
 }

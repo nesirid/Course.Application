@@ -6,6 +6,7 @@ namespace Repository.Repositories.Interfaces
     {
         List<Student> GetByAge(int age);
         List<Student> GetByGroupId(int groupId);
+        List<Student> GetBySurnameOrName(string input);
         Student GetByName(string studentName);
     }
 }

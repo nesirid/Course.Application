@@ -40,22 +40,30 @@ Operation: string? operationStr = Console.ReadLine();
                 groupController.GetAllByTeacher();
                 break;
             case 8:
-                studentController.Delete();
+                groupController.GetById();
                 break;
             case 9:
-                studentController.Update();
+                studentController.Delete();
                 break;
             case 10:
-                studentController.Create();
+                studentController.Update();
                 break;
             case 11:
-                studentController.GetByName();
+                studentController.Create();
                 break;
             case 12:
-                studentController.GetByAge();
+                studentController.GetByName();
                 break;
             case 13:
+                studentController.GetByAge();
+                break;
+            case 14:
                 studentController.GetById();
+                break;
+            case 15:
+                Console.WriteLine("Enter Name or Surname");
+                string input =Console.ReadLine();
+                studentController.GetBySurnameOrName(input);
                 break;
             default:
                 ConsoleColor.Red.WriteConsole("Operation is wrong, please choose again");
@@ -71,5 +79,5 @@ Operation: string? operationStr = Console.ReadLine();
 
 static void GetMenues()
 {
-    ConsoleColor.Cyan.WriteConsole("Choose one operation : \n 1 - Create Group \n 2 - Update Group \n 3 - Delete Group \n 4 - Get All Groups \n 5 - Get Group By Name \n 6 - Get Student By Id \n 7 - Get All Groups By Teacher \n 8 - Delete Student \n 9 - Update Student \n 10 - Create Student \n 11 - Get Student By Name \n 12 - Get Student By Age");
+    ConsoleColor.Cyan.WriteConsole("Choose one operation : \n 1 - Create Group \n 2 - Update Group \n 3 - Delete Group \n 4 - Get All Groups \n 5 - Get Group By Name \n 6 - Get Student By Id \n 7 - Get All Groups By Teacher \n 8 - Delete Student \n 9 - Update Student \n 10 - Create Student \n 11 - Get Student By Name \n 12 - Get Student By Age \n 13 - Get Student By Id");
 }

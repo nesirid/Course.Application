@@ -11,6 +11,7 @@ namespace Service.Services.Interfaces
         Student GetById(int id);
         List<Student> GetByAge(int age);
         List<Student> GetByGroupId(int groupId);
-
+        List<Student> GetBySurnameOrName(string input);
+        
     }
 }

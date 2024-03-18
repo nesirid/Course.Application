@@ -54,6 +54,14 @@ namespace Service.Services
             return student;
         }
 
+        public List<Student> GetBySurnameOrName(string input)
+        {
+
+            if(input==null) throw new NotImplementedException();
+            List<Student> students = _studentRepo.GetBySurnameOrName(input);
+            return students;
+        }
+
         public void Update(Student student)
         {
             if (student == null) throw new NotImplementedException();

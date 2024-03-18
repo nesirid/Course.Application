@@ -2,7 +2,6 @@
 using Service.Services;
 using Domain.Models;
 using Service.Helpers.Extentions;
-using System.Reflection.Emit;
 
 namespace Course.Application.Controllers
 {
@@ -18,24 +17,26 @@ namespace Course.Application.Controllers
         {
             Console.WriteLine("Add name:");
         Name: string? name = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(name))
+
+            if (string.IsNullOrWhiteSpace(name) || !name.All(char.IsLetter))
             {
-                ConsoleColor.Red.WriteConsole("Input can't be empty");
+                ConsoleColor.Red.WriteConsole("Input can't be empty or you used symbol!!!");
                 goto Name;
             }
             Console.WriteLine("Add Surname:");
         Surname: string? surname = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(surname))
+            if (string.IsNullOrWhiteSpace(surname) || !name.All(char.IsLetter))
             {
                 ConsoleColor.Red.WriteConsole("Input can't be empty");
                 goto Surname;
             }
             Console.WriteLine("Add Age:");
         Age: string? ageStr = Console.ReadLine();
-            int age = int.Parse(ageStr);
-            if (age == null)
+            int age;
+            bool isAge = int.TryParse(ageStr, out age);
+            if (!isAge)
             {
-                ConsoleColor.Red.WriteConsole("Input can't be empty");
+                ConsoleColor.Red.WriteConsole("Type of age is wrong!!!");
                 goto Age;
             }
             Console.WriteLine("Add Room:");
@@ -187,7 +188,14 @@ namespace Course.Application.Controllers
                 Console.WriteLine($"Id: {item.Id}, Student name : {item.Name}, Student Surname : {item.Surname}, Student Age : {item.Age}, Student Group : {item.Group}");
             }
         }
-
-
+        public void GetBySurnameOrName(string input)
+        {
+            List<Student> students = _studentService.GetBySurnameOrName(input);
+            foreach (var student in students)
+            {
+                string data = $"Id: {student.Id}, Student name : {student.Name}, Student Surname : {student.Surname}, Student Age : {student.Age}, Student Group : {student.Group}";
+                Console.WriteLine(data);
+            }
+        }
     }
 }
