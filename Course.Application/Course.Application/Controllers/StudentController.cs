@@ -145,15 +145,49 @@ namespace Course.Application.Controllers
             }
         }
 
-        public void GetById(int id)
+        public void GetById()
         {
-            var student = _studentService.GetById(id);
-
+            ConsoleColor.Cyan.WriteConsole("Enter Group id:");
+        Id: string idStr = Console.ReadLine();
+            int id;
+            bool isCorrectIdFormat = int.TryParse(idStr, out id);
+            if (isCorrectIdFormat)
+            {
+                try
+                {
+                    Student student = _studentService.GetById(id);
+                    Console.WriteLine($"Id: {student.Id}, Student name : {student.Name}, Student Surname : {student.Surname}, Student Age : {student.Age} , Student Group : {student.Group}");
+                }
+                catch (Exception ex)
+                {
+                    ConsoleColor.Red.WriteConsole(ex.Message);
+                    goto Id;
+                }
+            }
+            else
+            {
+                ConsoleColor.Red.WriteConsole("Id format is wrong, please add again");
+                goto Id;
+            }
+        }
+        public void GetByName()
+        {
+            string name = Console.ReadLine();
+            var student = _studentService.GetByName(name);
             string data = $"Id: {student.Id}, Student name : {student.Name}, Student Surname : {student.Surname}, Student Age : {student.Age}, Student Group : {student.Group}";
             Console.WriteLine(data);
         }
-        
+        public void GetByAge()
+        {
+            string ageStr = Console.ReadLine();
+            int age = int.Parse(ageStr);
+            var students = _studentService.GetByAge(age);
+            foreach (var item in students)
+            {
+                Console.WriteLine($"Id: {item.Id}, Student name : {item.Name}, Student Surname : {item.Surname}, Student Age : {item.Age}, Student Group : {item.Group}");
+            }
+        }
 
-    
+
     }
 }
