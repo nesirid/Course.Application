@@ -8,6 +8,9 @@ namespace Course.Application.Controllers
     internal class StudentController
     {
         private readonly IStudentService _studentService;
+
+        
+
         public StudentController()
         {
             _studentService = new StudentService();
@@ -33,10 +36,10 @@ namespace Course.Application.Controllers
             Console.WriteLine("Add Age:");
         Age: string? ageStr = Console.ReadLine();
             int age;
-            bool isAge = int.TryParse(ageStr, out age);
-            if (!isAge)
+            bool isCorrectAgeFormat = int.TryParse(ageStr, out age);
+            if (!isCorrectAgeFormat || age < 3 || age > 60)
             {
-                ConsoleColor.Red.WriteConsole("Type of age is wrong!!!");
+                ConsoleColor.Red.WriteConsole("Type of age is wrong or too young!!");
                 goto Age;
             }
             Console.WriteLine("Add Room:");
@@ -50,6 +53,10 @@ namespace Course.Application.Controllers
             {
                 _studentService.Create(new Student { Name = name, Surname = surname, Age = age, Group = group });
                 ConsoleColor.Green.WriteConsole("Data successfully added");
+                
+                Console.WriteLine($" Name: {name}, Surname: {surname}, Age: {age}, Group: {group}");
+
+
             }
             catch (Exception ex)
             {
