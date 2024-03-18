@@ -25,9 +25,9 @@ namespace Course.Application.Controllers
             }
             Console.WriteLine("Add Surname:");
         Surname: string? surname = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(surname) || !name.All(char.IsLetter))
+            if (string.IsNullOrWhiteSpace(surname) || !surname.All(char.IsLetter))
             {
-                ConsoleColor.Red.WriteConsole("Input can't be empty");
+                ConsoleColor.Red.WriteConsole("Input can't be empty or you used symbol!!!");
                 goto Surname;
             }
             Console.WriteLine("Add Age:");
@@ -41,9 +41,9 @@ namespace Course.Application.Controllers
             }
             Console.WriteLine("Add Room:");
         Group: string? group = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(group))
+            if (string.IsNullOrWhiteSpace(group) || !group.All(c => char.IsLetter(c) || char.IsDigit(c)))
             {
-                ConsoleColor.Red.WriteConsole("Input can't be empty");
+                ConsoleColor.Red.WriteConsole("Input can't be empty or you used symbol!!!");
                 goto Group;
             }
             try
@@ -76,8 +76,23 @@ namespace Course.Application.Controllers
                     }
                     else
                     {
-                        _studentService.Delete(id);
-                        ConsoleColor.Green.WriteConsole("Data successfully deleted");
+                        ConsoleColor.Yellow.WriteConsole("Are you sure you want to delete this student? (yes/no)");
+                        string confirmation = Console.ReadLine().Trim().ToLower();
+
+                        if (confirmation == "yes")
+                        {
+                            _studentService.Delete(id);
+                            ConsoleColor.Green.WriteConsole("Data successfully deleted");
+                        }
+                        else if (confirmation == "no")
+                        {
+                            ConsoleColor.Yellow.WriteConsole("Deletion canceled");
+                        }
+                        else
+                        {
+                            ConsoleColor.Red.WriteConsole("Invalid input. Please enter 'yes' or 'no'.");
+                            goto Id;
+                        }
                     }
                 }
                 catch (Exception ex)

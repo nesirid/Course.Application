@@ -42,13 +42,13 @@ Operation: string? operationStr = Console.ReadLine();
             case 8:
                 groupController.GetById();
                 break;
-            case 9:
+            case 11:
                 studentController.Delete();
                 break;
             case 10:
                 studentController.Update();
                 break;
-            case 11:
+            case 9:
                 studentController.Create();
                 break;
             case 12:
@@ -79,5 +79,5 @@ Operation: string? operationStr = Console.ReadLine();
 
 static void GetMenues()
 {
-    ConsoleColor.Cyan.WriteConsole("Choose one operation : \n 1 - Create Group \n 2 - Update Group \n 3 - Delete Group \n 4 - Get All Groups \n 5 - Get Group By Name \n 6 - Get Student By Id \n 7 - Get All Groups By Teacher \n 8 - Delete Student \n 9 - Update Student \n 10 - Create Student \n 11 - Get Student By Name \n 12 - Get Student By Age \n 13 - Get Student By Id");
+    ConsoleColor.Cyan.WriteConsole("Choose one operation : \n 1 - Create Group \n 2 - Update Group \n 3 - Delete Group \n 4 - Get All Groups \n 5 - Get Group By Name \n 6 - Get Group By Room \n 7 - Get All Groups By Teacher \n 8 - Get All Groups By Id \n 9 - Create Student \n 10 - Update Student \n 11 - Delete Student \n 12 - Get Student By Name \n 13 - Get Student By Age \n 14 - Get Student By Id \n 15 - Get By Surname Or Name");
 }

@@ -18,23 +18,23 @@ namespace Course.Application.Controllers
         {
             Console.WriteLine("Add Group name:");
         Name: string? name = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(name))
+            if (string.IsNullOrWhiteSpace(name) || !name.All(c => char.IsLetter(c) || char.IsDigit(c)))
             {
-                ConsoleColor.Red.WriteConsole("Input can't be empty");
+                ConsoleColor.Red.WriteConsole("Input can't be empty or you used symbol!!!");
                 goto Name;
             }
             Console.WriteLine("Add Teacher Name:");
         Teacher: string? teacher = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(teacher))
+            if (string.IsNullOrWhiteSpace(teacher) || !teacher.All(char.IsLetter))
             {
-                ConsoleColor.Red.WriteConsole("Input can't be empty");
+                ConsoleColor.Red.WriteConsole("Input can't be empty or you used symbol!!!");
                 goto Teacher;
             }
             Console.WriteLine("Add Room:");
         Room: string? room = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(room))
+            if (string.IsNullOrWhiteSpace(room) || !room.All(c => char.IsLetter(c) || char.IsDigit(c)))
             {
-                ConsoleColor.Red.WriteConsole("Input can't be empty");
+                ConsoleColor.Red.WriteConsole("Input can't be empty or you used symbol!!!");
                 goto Room;
             }
             try
@@ -77,8 +77,23 @@ namespace Course.Application.Controllers
                     }
                     else
                     {
-                        _groupService.Delete(id);
-                        ConsoleColor.Green.WriteConsole("Data successfully deleted");
+                        ConsoleColor.Yellow.WriteConsole("Are you sure you want to delete this group? (yes/no)");
+                        string confirmation = Console.ReadLine().Trim().ToLower();
+
+                        if (confirmation == "yes")
+                        {
+                            _groupService.Delete(id);
+                            ConsoleColor.Green.WriteConsole("Data successfully deleted");
+                        }
+                        else if (confirmation == "no")
+                        {
+                            ConsoleColor.Yellow.WriteConsole("Deletion canceled");
+                        }
+                        else
+                        {
+                            ConsoleColor.Red.WriteConsole("Invalid input. Please enter 'yes' or 'no'.");
+                            goto Id;
+                        }
                     }
                 }
                 catch (Exception ex)
